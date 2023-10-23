@@ -58,7 +58,7 @@ const BookDetail = ({ route,navigation }) => {
       <TouchableOpacity onPress={addToCart}>
           <Image
             style={{ width: 220, height: 60, alignSelf: 'center' }}
-            source={require('../digilibrary/re.png')}
+            source={require('../assets/re.png')}
           />
         </TouchableOpacity>
     
