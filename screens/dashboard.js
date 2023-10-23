@@ -30,10 +30,11 @@ export default class Dash extends Component {
 }
   getUserDetails27 = () => {
     db.collection("users")
-      .where("email", "==", this.state.email)
+      .where("uid", "==", firebase.auth().currentUser.uid)
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
           this.setState({name : doc.data().name})
+          
         })
     });}
 
@@ -84,7 +85,7 @@ export default class Dash extends Component {
         <Text style={{marginLeft:10,fontSize:17,fontWeight:'bold',textAlign:'center',color:"white"}}>-{this.state.author}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
+          onPress={()  => {
             this.props.navigation.navigate('Cat');
           }}>
           <Image

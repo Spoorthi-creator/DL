@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "dl",
+    "name": "DigiLib",
     "slug": "snack-a020329e-0778-450e-825d-1caa4146a759",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,15 +25,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.spoorthipradeepaadi.snacka020329e0778450e825d1caa4146a759"
+      "package": "com.arnav.digiLib"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "a0595625-3cbe-45b3-bb83-19b5450efe7a"
-      }
     }
   }
 }

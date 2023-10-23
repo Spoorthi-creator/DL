@@ -17,6 +17,7 @@ import db from '../screens/config'
 import * as ImagePicker from 'expo-image-picker';
 const CustomDrawer = props => {
   const [name,setName]=useState('');
+  const uid=firebase.auth().currentUser.uid;
   const email=firebase.auth().currentUser.email;
   const[image,setImage]=useState('https://github.com/ArnavVashisthCodingAccountnew/HACKED/blob/main/user.png?raw=true');
 
@@ -28,7 +29,7 @@ const CustomDrawer = props => {
 
   const getUserDetails = () => {
     db.collection("users")
-      .where("email", "==", email)
+      .where("uid", "==", uid)
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
          setName(doc.data().name)
