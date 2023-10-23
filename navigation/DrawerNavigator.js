@@ -1,11 +1,14 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-
+import { createStackNavigator } from '@react-navigation/stack';
 import StackNavigator from './StackNavigator';
 import Logout from '../screens/Logout';
-
 import CustomDrawer from './CustomDrawer';
+import Dash from '../screens/dashboard';
+import Cart from '../screens/cart';
+import Cho1 from '../screens/catologue';
+import BookDetail from '../screens/BookDetail';
 
 
 const Drawer = createDrawerNavigator();
@@ -16,7 +19,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator  drawerContent={props => <CustomDrawer {...props} />}
     screenOptions={{
       headerShown: false,
-      drawerActiveBackgroundColor: '#1c0f24',
+      drawerActiveBackgroundColor: '#5e17eb',
       drawerActiveTintColor: "white",
       drawerInactiveTintColor: "black",
       drawerLabelStyle: {
@@ -24,22 +27,47 @@ const DrawerNavigator = () => {
       },}}>
       <Drawer.Screen
         name="Home"
+        component={HomeStack}
+        options={{
+          headerShown: false,
+        }}
+      />
+        <Drawer.Screen
+        name="Catalougue"
         component={StackNavigator}
         options={{
           headerShown: false,
         }}
       />
-   
      
-      <Drawer.Screen
+       <Drawer.Screen name="Your Cart" component={Cart}  />
+
+       <Drawer.Screen
         name="Logout"
         component={Logout}
        
       />
+
     </Drawer.Navigator>
+
+    
   );
 };
-
+const HSStack = createStackNavigator();
+function HomeStack() {
+  return (
+    <HSStack.Navigator screenOptions={{ headerShown: false }}>
+     <HSStack.Screen name="Dash" component={Dash} />
+     <HSStack.Screen name="Cat" component={Cho1} />
+     <HSStack.Screen name="BookDetail" component={BookDetail} options={{
+      headerShown: false,
+    }} />
+     <HSStack.Screen name="Cart" component={Cart} options={{
+      headerShown: false,
+    }} />
+    </HSStack.Navigator>
+  );
+}
 
 export default DrawerNavigator;
   

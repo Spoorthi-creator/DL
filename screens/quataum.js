@@ -9,42 +9,25 @@ export default class Q extends Component {
             })
   }
     return (
-      <ScrollView>
-            <Text> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</Text>
+      <ScrollView style={{flex:1}}>
+          
         <Text style={stylus.namastetext}>Quantaum Computing</Text>
         <Image
-          style={{ width: 200, height: 400, alignSelf: 'center' }}
+          style={{ width: 200, height: 300, alignSelf: 'center',marginTop:10 }}
           source={require('../digilibrary/quanti.png')}
         />
             <Text style={stylus.authoro}>By Brian Clegg</Text>
         <Text style={stylus.price}>₹390</Text>
-        <Text>
+        <Text style={{alignSelf:'center'}}>
           The ultimate non-technical guide to the fast-developing world of
           quantum computing Computer technology has improved exponentially over
-          the last 50 years. &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; But the headroom for bigger and better electronic
+          the last 50 years. 
+          But the headroom for bigger and better electronic
           solutions is running out. Our best hope is to engage the power of
           quantum physics. Quantum algorithms had already been written long
           before hardware was built. These would enable, for example, a quantum
           computer to exponentially speed up an information search, or to crack
-          the mathematical trick behind internet security. &nbsp;&nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; However,
+          the mathematical trick behind internet security.However,
           making a quantum computer is incredibly difficult. Despite hundreds of
           laboratories around the world working on them, we are only just seeing
           them come close to supremacy where they can outperform a traditional
@@ -64,9 +47,12 @@ export default class Q extends Component {
 
 const stylus = StyleSheet.create({
   namastetext: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'purple',
+    margin:10,
+    marginTop:20
+
   },
   namastetexto: {
     fontWeight: 'bold',
@@ -76,11 +62,13 @@ const stylus = StyleSheet.create({
     authoro: {
     fontWeight: 'bold',
     color: 'blue',
-    fontSize: 27,
+    fontSize: 20,
+    margin:10,
   },
   price: {
     fontWeight: 'bold',
     color: 'orange',
-    fontSize: 29,
+    fontSize: 20,
+    marginLeft:10
   },
 });

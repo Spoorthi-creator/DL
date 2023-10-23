@@ -12,6 +12,8 @@ const On = ({navigation}) => {
       navigation.navigate("Login")
     } }
 
+    
+
     pages={[
       {
                 backgroundColor: '#fff',
@@ -21,7 +23,7 @@ const On = ({navigation}) => {
       },
       {
         backgroundColor: '#fff',
-        image: <Image style={{width:400,height:300}} source={require('../assets/1,000books.png')} />,
+        image: <Image style={{width:400,height:300}} source={require('../assets/1000books.png')} />,
         title: '1,000+ books and toys',
         subtitle: 'Customized for Each Age Group. From Libraries accross Bharat. ',
       },

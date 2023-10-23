@@ -23,6 +23,11 @@ export default class Dash extends Component {
       email:firebase.auth().currentUser.email
     };
   }
+  componentDidMount() {
+    this.fetchQuotes();
+    this.getUserDetails27();
+ 
+}
   getUserDetails27 = () => {
     db.collection("users")
       .where("email", "==", this.state.email)
@@ -31,11 +36,7 @@ export default class Dash extends Component {
           this.setState({name : doc.data().name})
         })
     });}
-  componentDidMount() {
-    this.fetchQuotes();
-    this.getUserDetails27()
- 
-}
+
 
   
 
@@ -68,17 +69,20 @@ export default class Dash extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex:1,height:screenHeight,width:screenWidth}}>
+        <View style={{flexDirection:'row'}}>
          <TouchableOpacity onPress={this.openDrawer1} style={{marginTop:20}}>
          
           <Feather name="menu" size={30} color="black" style={{margin:5}}/>
           </TouchableOpacity>
+          <Image style={{ width: 80, height: 80,marginTop:20,alignSelf:'center',marginLeft:screenWidth/3.7}} source={require('../assets/digi.png')}></Image>
+          </View>
         <Text style={stylus.namastetext}>Namaste,</Text>
         <Text style={stylus.namastetexto}>{this.state.name}</Text>
-
-        <Text>Author: {this.state.author}</Text>
-        <Text>Quote: {this.state.quote}</Text>
-
+        <TouchableOpacity disabled={true} style={{backgroundColor:"purple",margin:15,borderRadius:10}}>
+        <Text style={{marginLeft:10, fontSize:15,textAlign:'center',color:"white"}}>{this.state.quote}</Text>
+        <Text style={{marginLeft:10,fontSize:17,fontWeight:'bold',textAlign:'center',color:"white"}}>-{this.state.author}</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('Cat');
@@ -100,14 +104,16 @@ export default class Dash extends Component {
               width: 340,
               height: 80,
               marginTop: 30,
-              marginBottom: 5,
+              marginBottom: 30,
               marginLeft: 30,
             }}
             source={require('../assets/supportnow.png')}
           ></Image>
         </TouchableOpacity>
+      <Text style={{textAlign:"center",color:"grey",marginBottom:10, marginTop:screenHeight/9}}>Made with 💖 in the heart of Bharat </Text>
 
-        
+      <Text style={{textAlign:"center",color:"grey"}}>Data stored in Mumbai Data center </Text>
+
       </View>
     );
   }
@@ -115,13 +121,15 @@ export default class Dash extends Component {
 
 const stylus = StyleSheet.create({
   namastetext: {
-    fontSize: 50,
+    fontSize: 30,
     fontWeight: 'bold',
     color: 'purple',
+    marginLeft:7
   },
   namastetexto: {
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 16,
     color: 'blue',
+    marginLeft:7
   },
 });

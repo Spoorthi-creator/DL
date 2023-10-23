@@ -16,40 +16,32 @@ import Hack from '../screens/hack';
 import Iam from '../screens/iam';
 import JS from '../screens/js';
 import Cho1 from '../screens/catologue';
-import Cart from '../cart';
 
 import Dash from '../screens/dashboard';
+import BookDetail from '../screens/BookDetail';
+import Cart from '../screens/cart';
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Dash">
+    <Stack.Navigator initialRouteName="Cat" options={{
+      headerShown: false,
+    }} >
       
       <Stack.Screen
-        name="Dash"
-        component={Dash}
+        name="Cat"
+        component={Cho1}
         options={{
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Cat" component={Cho1} />
-        <Stack.Screen name="Quant" component={Q}  />
-        <Stack.Screen name="US" component={U} />
-        <Stack.Screen name="Dahl" component={Roald} />
-        <Stack.Screen name="Linus" component={Linus} />
-        <Stack.Screen name="Sapiens" component={Sapiens} />
-        <Stack.Screen name="Gernimo" component={Ger} />
-        <Stack.Screen name="Rick" component={Rick} />
-        <Stack.Screen name="David" component={David} />
-        <Stack.Screen name="80" component={Eighty} />
-        <Stack.Screen name="Boy" component={Boy} />
-        <Stack.Screen name="Kalam" component={Kalam} />
-        <Stack.Screen name="Hack" component={Hack} />
-        <Stack.Screen name="Walt" component={Iam} />
-        <Stack.Screen name="JS" component={JS} />
+        <Stack.Screen name="BookDetail" component={BookDetail} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="Cart" component={Cart} options={{
+      headerShown: false,
+    }} />
        
-
-        <Stack.Screen name="C" component={Cart} />
                
      
 

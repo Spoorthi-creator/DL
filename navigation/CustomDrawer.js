@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -17,22 +18,23 @@ import * as ImagePicker from 'expo-image-picker';
 const CustomDrawer = props => {
   const [name,setName]=useState('');
   const email=firebase.auth().currentUser.email;
-  const[image,setImage]=useState('https://dummyimage.com/80x80/000/fff.png');
-  const getUserDetails27 = () => {
+  const[image,setImage]=useState('https://github.com/ArnavVashisthCodingAccountnew/HACKED/blob/main/user.png?raw=true');
+
+    useEffect(() => {
+    getUserDetails();
+    fetchImage();
+ 
+  }, []);
+
+  const getUserDetails = () => {
     db.collection("users")
       .where("email", "==", email)
       .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
          setName(doc.data().name)
+         console.log("Name-",doc.data().name)
         })
     });}
-    useEffect(() => {
-
-    getUserDetails27();
-    fetchImage();
- 
-  }, []);
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -41,13 +43,16 @@ const CustomDrawer = props => {
       quality: 1,
     });
 
+
     console.log('Result', result.assets[0].uri);
 
+
     if (!result.cancelled) {
-      setImage(result.assets[0].uri ); 
+      setImage(result.assets[0].uri );
       uploadImage(result.assets[0].uri);
     }
   };
+
 
   const uploadImage = async (imageUri) => {
     try {
@@ -64,17 +69,20 @@ const CustomDrawer = props => {
         xhr.send(null);
       });
 
+
       await firebase
         .storage()
         .ref()
         .child('usersP/' + firebase.auth().currentUser.email)
         .put(blob);
 
+
       fetchImage();
     } catch (error) {
       console.log(error);
     }
   };
+
 
   const fetchImage = async () => {
     try {
@@ -92,30 +100,42 @@ const CustomDrawer = props => {
     <View style={{flex: 1}}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{backgroundColor: '#1c0f24'}}>
+        contentContainerStyle={{backgroundColor: '#5e17eb'}}>
        
        <TouchableOpacity onPress={pickImage} style={{ alignItems: 'center' }}>
           <Image
           source={{ uri: image }}
-          style={{ width:50, height:50, alignSelf:'center', borderRadius:80, borderWidth:2,borderColor:'white'}}/>
-        </TouchableOpacity>   
-          <Text
+          style={{ width:150, height:150, alignSelf:'center', borderRadius:100, borderWidth:2,borderColor:'white'}}/>
+        </TouchableOpacity>
+        <Text
             style={{
               color: '#fff',
-              fontSize: 18,
+              fontSize: 20,
              marginLeft:20,
               marginBottom: 5,
+              fontWeight:'bold'
             }}>
       {name}
           </Text>
+        <Text
+            style={{
+              color: '#fff',
+              fontSize: 16,
+             marginLeft:20,
+              marginBottom: 5,
+            }}>
+      {email}
+          </Text>  
+
        
-      
+     
         <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 10}}>
           <DrawerItemList {...props} />  
+
         </View>
       </DrawerContentScrollView>
       <View style={{padding: 20, borderTopWidth: 1, borderTopColor: '#ccc'}}>
- 
+   <Text>Version 1.2 BETA⚡</Text>
      
       </View>
     </View>
@@ -125,4 +145,9 @@ const CustomDrawer = props => {
 
 
 
+
+
+
+
 export default CustomDrawer;
+

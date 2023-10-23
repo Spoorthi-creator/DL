@@ -10,9 +10,10 @@ import {
     Alert,
     TouchableOpacity,
     Text,
-} from "react-native";
+} from "react-native"
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-
+import db from './config';
 import firebase from "firebase";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Entypo } from '@expo/vector-icons';
@@ -66,50 +67,60 @@ export default class SignUp extends Component {
         const { email, password, confirmPassword, name, phonewithCC } = this.state;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView style={styles.container}>
                 <SafeAreaView style={styles.droidSafeArea} />
-                <Image style={{ width: 200, height: 200, marginLeft: 10, marginTop: 40 }} source={require('../assets/digi.png')}></Image>
-
+                <Image style={{ width: 200, height: 200,marginTop:15,alignSelf:'center'}} source={require('../assets/digi.png')}></Image>
+                 <View>
                 <TextInput
                     style={styles.textinput}
                     onChangeText={text => this.setState({ name: text })}
                     placeholder={"Name"}
                     placeholderTextColor={"#FFFFFF"}
-                />
+                /><TouchableOpacity disabled={true} style={{marginTop:RFValue(23),marginLeft:RFValue(-40)}}><Image style={{ width: 45, height: 45,marginTop:RFValue(-66),marginLeft:RFValue(47),paddingBottom:RFValue(20)}} source={require('../assets/name.png')}></Image></TouchableOpacity>
+                </View>
+                <View>
                 <TextInput
                     style={styles.textinput}
                     onChangeText={text => this.setState({ email: text })}
-                    placeholder={"Enter Email"}
+                    placeholder={"Email"}
                     placeholderTextColor={"#FFFFFF"}
                     keyboardType="email-address"
-                />
+                /><TouchableOpacity disabled={true} style={{marginTop:RFValue(23),marginLeft:RFValue(-40)}}><Image style={{ width: 45, height: 45,marginTop:RFValue(-66),marginLeft:RFValue(47),paddingBottom:RFValue(20)}} source={require('../assets/email.png')}></Image></TouchableOpacity>
+                </View>
                 <View style={{flexDirection:'row'}}>
+                    <View>
                 <TextInput
-                    style={styles.disabledtextinput }
+                    style={styles.textinputo }
                     onChangeText={text => this.setState({ password: text })}
-                    placeholder={"Enter Password"}
+                    placeholder={"Password"}
                     placeholderTextColor={"#FFFFFF"}
                     secureTextEntry={this.state.secureTextEntry}
-                />
-                
-                <TouchableOpacity style={{marginTop:20,marginLeft:-40}} onPress={this.changeSecureText}>
-                    {this.state.secureTextEntry ? <Entypo name="eye-with-line" size={27} color="white" /> : <Entypo name="eye" size={27} color="white" />}
+                /><TouchableOpacity disabled={true} style={{marginTop:RFValue(23),marginLeft:RFValue(-30)}}><Image style={{ width: 45, height: 45,marginTop:RFValue(-66),marginLeft:RFValue(37),paddingBottom:RFValue(20)}} source={require('../assets/password.png')}></Image></TouchableOpacity>
+                </View>
+                <TouchableOpacity style={{marginTop:RFValue(17),marginLeft:RFValue(-40)}} onPress={this.changeSecureText}>
+                    {this.state.secureTextEntry ? <Entypo name="eye-with-line" size={RFValue(27)} color="white" /> : <Entypo name="eye" size={RFValue(27)} color="white" />}
                 </TouchableOpacity> 
                 </View>
+               
+                <View>
+                    
                 <TextInput
-                    style={styles.textinput}
+                    style={styles.textinputo}
                     onChangeText={text => this.setState({ confirmPassword: text })}
                     placeholder={"Re-enter Password"}
                     placeholderTextColor={"#FFFFFF"}
-                    secureTextEntry
-                />
+                    secureTextEntry={this.state.secureTextEntry}
+                /><TouchableOpacity disabled={true} style={{marginTop:RFValue(23),marginLeft:RFValue(-30)}}><Image style={{ width: 45, height: 45,marginTop:RFValue(-66),marginLeft:RFValue(37),paddingBottom:RFValue(20)}} source={require('../assets/password.png')}></Image></TouchableOpacity>
+                </View>
+                
+                <View>
                 <TextInput
                     style={styles.textinput}
                     onChangeText={text => this.setState({ phonewithCC: text })}
                     placeholder={"Phone (with CC)"}
                     placeholderTextColor={"#FFFFFF"}
                     keyboardType='phone-pad'
-                />
+                /><TouchableOpacity disabled={true} style={{marginTop:RFValue(23),marginLeft:RFValue(-30)}}><Image style={{ width: 45, height: 45,marginTop:RFValue(-66),marginLeft:RFValue(37),paddingBottom:RFValue(20)}} source={require('../assets/phone.png')}></Image></TouchableOpacity></View>
                 <TouchableOpacity
                     style={[styles.button, { marginTop: 5 }]}
                     onPress={() => this.registerUser(email, password, confirmPassword, name, phonewithCC)}
@@ -118,7 +129,7 @@ export default class SignUp extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate("Login")}
+                    onPress={() => this.props.navigation.navigate("Login")} style={{}}
                 >
                     <Text style={styles.buttonTextNewUser}>Already a user? Login</Text>
                 </TouchableOpacity>
@@ -129,7 +140,7 @@ export default class SignUp extends Component {
                         <Text style={styles.errorMessageText}>{this.state.errorMessage}</Text>
                     </View>
                 )}
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
@@ -140,8 +151,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center"
+       alignSelf: "center",
     },
     droidSafeArea: {
         marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -160,29 +170,42 @@ const styles = StyleSheet.create({
         marginBottom: RFValue(20)
     },
     textinput: {
-        width: RFValue(250),
-        height: RFValue(40),
-        padding: RFValue(5),
-        marginTop: RFValue(7),
-        borderColor: "#",
-        borderWidth: RFValue(2),
-        borderRadius: RFValue(10),
-        fontSize: RFValue(15),
-        color: "#FFFFFF",
-        backgroundColor: "#800080"
-    },
-    disabledtextinput: {
-        width: RFValue(250),
-        height: RFValue(40),
-        padding: RFValue(5),
-        marginTop: RFValue(7),
+        width: RFValue(290),
+        height: RFValue(50),
+       // padding: RFValue(5),
         borderColor: "#",
         borderWidth: RFValue(2),
         borderRadius: RFValue(10),
         fontSize: RFValue(15),
         color: "#FFFFFF",
         backgroundColor: "#800080",
-        marginLeft:-11,
+        paddingLeft:60
+    },
+        textinputo: {
+        width: RFValue(290),
+        height: RFValue(50),
+       // padding: RFValue(5),
+        borderColor: "#",
+        borderWidth: RFValue(2),
+        borderRadius: RFValue(10),
+        fontSize: RFValue(15),
+        color: "#FFFFFF",
+        backgroundColor: "#800080",
+        paddingLeft:60
+    },
+    disabledtextinput: {
+        width: RFValue(290),
+        height: RFValue(50),
+        padding: RFValue(5),
+        borderColor: "#",
+        borderWidth: RFValue(2),
+        borderRadius: RFValue(10),
+        fontSize: RFValue(15),
+        color: "#FFFFFF",
+        backgroundColor: "#800080",
+        marginLeft:RFValue(-11),
+        paddingLeft:70
+
     },
     button: {
         width: RFValue(250),
@@ -192,7 +215,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: RFValue(30),
         backgroundColor: "white",
-        marginBottom: RFValue(20)
+        marginBottom: RFValue(20),
+        alignSelf:'center',
     },
     buttonText: {
         fontSize: RFValue(24),
@@ -200,6 +224,7 @@ const styles = StyleSheet.create({
     },
     buttonTextNewUser: {
         fontSize: RFValue(12),
-        color: "#800080"
+        color: "#800080",
+        alignSelf:'center',
     }
 });
