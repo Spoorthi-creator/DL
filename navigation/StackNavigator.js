@@ -9,9 +9,16 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Cat" options={{
+    <Stack.Navigator initialRouteName="Dash" options={{
       headerShown: false,
     }} >
+         <Stack.Screen
+        name="Dash"
+        component={Dash}
+        options={{
+          headerShown: false,
+        }}
+      />
       
       <Stack.Screen
         name="Cat"

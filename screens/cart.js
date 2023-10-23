@@ -91,11 +91,23 @@ export default class Cart extends Component {
       const orderData=JSON.stringify(this.state.bookNameForEmail);
       Linking.openURL('mailto:arnavvst2020@gmail.com'+'?subject=New Order'+'&body= You have a new order for books - \n'+orderData+'  . \n Please deliver them within 5 days. ');
       this.setState({orders:[]})
-      await db.collection("cart").where("email",'==', firebase.auth().currentUser.email).delete().then(() => {
+
+      const collectionRef = db.collection("cart");
+
+// Define your query with a 'where' clause
+const query = collectionRef.where('email', '==', firebase.auth().currentUser.email);
+
+// Delete documents that match the query
+query.get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    doc.ref.delete();
+  });
+});
+    //   await db.collection("cart").where("email",'==', firebase.auth().currentUser.email).delete().then(() => {
        
-    }).catch((error) => {
-        alert("Something went wrong!Try later");
-    });
+    // }).catch((error) => {
+    //     alert("Something went wrong!Try later");
+    // });
     this.getOrderDetails();
       
     }
@@ -124,19 +136,19 @@ export default class Cart extends Component {
       <ScrollView style={{flex:1,backgroundColor:'periwinkle'}}>
         <View style={{flexDirection:'row'}}>
 
-{/* <TouchableOpacity   onPress={()=>{
+<TouchableOpacity   onPress={()=>{
 this.props.navigation.navigate("Cat")
 }} style={{margin:20}}><FontAwesomeIcon
 icon={faArrowLeftLong}
 size={RFValue(26)}
 
 
-/></TouchableOpacity> */}
-<TouchableOpacity onPress={this.openDrawer1} style={{marginTop:20}}>
+/></TouchableOpacity>
+{/* <TouchableOpacity onPress={this.openDrawer1} style={{marginTop:20}}>
          
          <Feather name="menu" size={30} color="black" style={{margin:5}}/>
-         </TouchableOpacity>
- <Image style={{ width: 80, height: 80,marginTop:20,alignSelf:'center',marginLeft:screenWidth/3.7}} source={require('../assets/digi.png')}></Image>
+         </TouchableOpacity> */}
+ <Image style={{ width: 80, height: 80,marginTop:20,alignSelf:'center',marginLeft:screenWidth/5}} source={require('../assets/digi.png')}></Image>
 </View>
         
           <Text style={{ color: 'purple', fontSize: 30, fontWeight: 'bold',margin:20 }}>

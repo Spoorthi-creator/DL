@@ -27,14 +27,14 @@ const DrawerNavigator = () => {
       },}}>
       <Drawer.Screen
         name="Home"
-        component={HomeStack}
+        component={StackNavigator}
         options={{
           headerShown: false,
         }}
       />
         <Drawer.Screen
         name="Catalougue"
-        component={StackNavigator}
+        component={Cho1}
         options={{
           headerShown: false,
         }}
@@ -53,21 +53,21 @@ const DrawerNavigator = () => {
     
   );
 };
-const HSStack = createStackNavigator();
-function HomeStack() {
-  return (
-    <HSStack.Navigator screenOptions={{ headerShown: false }}>
-     <HSStack.Screen name="Dash" component={Dash} />
-     <HSStack.Screen name="Cat" component={Cho1} />
-     <HSStack.Screen name="BookDetail" component={BookDetail} options={{
-      headerShown: false,
-    }} />
-     <HSStack.Screen name="Cart" component={Cart} options={{
-      headerShown: false,
-    }} />
-    </HSStack.Navigator>
-  );
-}
+// const HSStack = createStackNavigator();
+// function HomeStack() {
+//   return (
+//     <HSStack.Navigator screenOptions={{ headerShown: false }}>
+//      <HSStack.Screen name="Dash" component={Dash} />
+//      <HSStack.Screen name="Cat" component={Cho1} />
+//      <HSStack.Screen name="BookDetail" component={BookDetail} options={{
+//       headerShown: false,
+//     }} />
+//      <HSStack.Screen name="Cart" component={Cart} options={{
+//       headerShown: false,
+//     }} />
+//     </HSStack.Navigator>
+//   );
+// }
 
 export default DrawerNavigator;
   
