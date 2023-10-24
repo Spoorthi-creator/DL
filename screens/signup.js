@@ -68,7 +68,8 @@ export default class SignUp extends Component {
 
         return (
             <KeyboardAwareScrollView style={styles.container}>
-                <SafeAreaView style={styles.droidSafeArea} />
+                <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
                 <Image style={{ width: 200, height: 200,marginTop:15,alignSelf:'center'}} source={require('../assets/digi.png')}></Image>
                  <View>
                 <TextInput

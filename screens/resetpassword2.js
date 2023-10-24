@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, StyleSheet, Image, SafeAreaView, TouchableOpacity, Alert,StatusBar,Platform } from 'react-native';
 import { RFValue } from "react-native-responsive-fontsize";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
@@ -43,7 +43,8 @@ export default class ResetPassword extends Component {
     const email = navigation.getParam('emailToPass', 'No ID');
     return (
       <View style={stylus.container}>
-        <SafeAreaView>
+       <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
           <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: RFValue(16) }}>
             <TouchableOpacity onPress={() => {
               this.props.navigation.navigate("ResetPassword");
@@ -94,7 +95,7 @@ export default class ResetPassword extends Component {
               <Text style={stylus.o}>Resend Email</Text>
             </TouchableOpacity>
           </View>
-        </SafeAreaView>
+        
       </View>
     );
   }
@@ -190,7 +191,7 @@ disabledtextinput: {
 container: {
   flex: 1,
   backgroundColor: "white",
- alignItems: "center",
+ //alignItems: "center",
 },
 button: {
   width: RFValue(250),

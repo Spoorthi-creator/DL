@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet,TouchableOpacity ,Dimensions,ScrollView} from 'react-native';
+import { View, Text, Image, StyleSheet,TouchableOpacity ,Dimensions,ScrollView,StatusBar,Platform,SafeAreaView} from 'react-native';
 import firebase from 'firebase';
 import db from './config';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -31,12 +31,13 @@ const BookDetail = ({ route,navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-   
+    <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
 
         <TouchableOpacity   onPress={()=>{
         navigation.navigate("Cat")
-      }} style={{margin:20}}><FontAwesomeIcon
+      }} style={{margin:10}}><FontAwesomeIcon
         icon={faArrowLeftLong}
         size={RFValue(26)}
     
@@ -46,7 +47,7 @@ const BookDetail = ({ route,navigation }) => {
       <TouchableOpacity  onPress={()=>{
         navigation.navigate("Cart")
       }}>
-         <Image style={{ width: 40, height: 40,margin:20,}} source={require('../assets/cart.png')}></Image></TouchableOpacity>
+         <Image style={{ width: 40, height: 40,margin:10,}} source={require('../assets/cart.png')}></Image></TouchableOpacity>
         </View>
          
       <Image source={{ uri: book.imageUri }} style={styles.image} />

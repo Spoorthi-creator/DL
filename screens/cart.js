@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList, Alert, ScrollView, Linking } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList, Alert, ScrollView, Linking ,SafeAreaView,Platform,StatusBar} from 'react-native';
 import firebase from 'firebase';
 import db from './config';
 import { Feather } from '@expo/vector-icons';
@@ -143,8 +143,8 @@ export default class Cart extends Component {
       <View style={{ flex: 1, width: screenWidth - 20, height: 80, backgroundColor: 'white', borderRadius: 15, margin: 20, }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
 
-          <Text style={{ margin: 20, fontSize: 16, fontWeight: 'bold' }}>{item.bookName}</Text>
-          <Text style={{ margin: 20, fontWeight: 'bold' }}>{item.price}</Text>
+          <Text style={{ margin: 15, fontSize: 16, fontWeight: 'bold' }}>{item.bookName}</Text>
+          <Text style={{ margin: 15, fontWeight: 'bold' }}>{item.price}</Text>
 
         </View>
         <TouchableOpacity style={{
@@ -161,12 +161,14 @@ export default class Cart extends Component {
   render() {
 
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: 'periwinkle' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'periwinkle',width:screenWidth,height:screenHeight }}>
+         <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
         <View style={{ flexDirection: 'row' }}>
-
+        
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Cat")
-          }} style={{ margin: 20 }}><FontAwesomeIcon
+          }} style={{ margin: 5 }}><FontAwesomeIcon
               icon={faArrowLeftLong}
               size={RFValue(26)}
 
@@ -176,7 +178,7 @@ export default class Cart extends Component {
          
          <Feather name="menu" size={30} color="black" style={{margin:5}}/>
          </TouchableOpacity> */}
-          <Image style={{ width: 80, height: 80, marginTop: 20, alignSelf: 'center', marginLeft: screenWidth / 5 }} source={require('../assets/digi.png')}></Image>
+          <Image style={{ width: 80, height: 80, marginTop: 5, marginLeft:screenWidth/3.8}} source={require('../assets/digi.png')}></Image>
         </View>
 
         <Text style={{ color: 'purple', fontSize: 30, fontWeight: 'bold', margin: 20 }}>

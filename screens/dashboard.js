@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  Dimensions
+  Dimensions,SafeAreaView,Platform,StatusBar
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 const screenHeight = Dimensions.get('window').height;
@@ -72,6 +72,8 @@ export default class Dash extends Component {
     return (
       <View style={{flex:1,height:screenHeight,width:screenWidth}}>
         <View style={{flexDirection:'row'}}>
+        <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
          <TouchableOpacity onPress={this.openDrawer1} style={{marginTop:20}}>
          
           <Feather name="menu" size={30} color="black" style={{margin:5}}/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image , SafeAreaView, TouchableOpacity,Alert,Dimensions} from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image , SafeAreaView, TouchableOpacity,Alert,Dimensions,Platform,StatusBar} from 'react-native';
 import db from './config';
 import firebase from 'firebase';
 import { RFValue } from "react-native-responsive-fontsize";
@@ -26,8 +26,9 @@ export default class ResetPassword extends Component {
   render() {
     return (
       <View style={stylus.container}>
-    <SafeAreaView>
-      <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:screenHeight/18}}>
+   <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
+      <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:20}}>
       <TouchableOpacity   onPress={()=>{
         this.props.navigation.navigate("Login")
       }} style={{marginLeft:14}}><FontAwesomeIcon
@@ -97,7 +98,7 @@ export default class ResetPassword extends Component {
 >
   <Text style={{ color: 'white', fontSize: RFValue(18) }}>Continue</Text>
 </TouchableOpacity>
-          </SafeAreaView>
+        
 
       </View>
     );
@@ -176,7 +177,7 @@ container: {
   height:screenHeight,
   width:screenWidth,
   backgroundColor: "white",
- alignItems: "center",
+ //alignItems: "center",
 },
 button: {
   width: RFValue(250),

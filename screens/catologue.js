@@ -174,7 +174,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  SafeAreaView,Platform,StatusBar
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -281,7 +282,8 @@ export default class Cho1 extends React.Component {
     return (
       <ScrollView>
          <View style={{flexDirection:'row'}}>
-
+         <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
 <TouchableOpacity   onPress={()=>{
 this.props.navigation.navigate("Dash")
 }} style={{margin:20}}><FontAwesomeIcon

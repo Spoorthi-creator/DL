@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Image, SafeAreaView, TouchableOpacity, Alert , Dimensions} from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, SafeAreaView, TouchableOpacity, Alert , Dimensions,StatusBar,Platform} from 'react-native';
 import db from './config';
 import firebase from 'firebase';
 import { RFValue } from "react-native-responsive-fontsize";
@@ -37,7 +37,8 @@ export default class Login extends Component {
   render() {
     return (
       <View style={stylus.container}>
-        <SafeAreaView>
+        <SafeAreaView style={{marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+}} />
           <Image style={{ width: 200, height: 200, marginTop: screenHeight/17, alignSelf: "center", marginBottom: RFValue(50) }} source={require('../assets/digi.png')}></Image>
           <View>
             <TextInput
@@ -95,7 +96,7 @@ export default class Login extends Component {
 
 
 
-        </SafeAreaView>
+       
       </View>
     );
   }
